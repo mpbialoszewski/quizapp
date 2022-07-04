@@ -2,12 +2,18 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import FinalScreen from "./pages/FinalScreen";
 import Settings from "./pages/Settings";
 import Questions from "./pages/Questions";
+import {Box, Container, Typography} from "@mui/material";
 
 function App() {
   return (
       <Router>
+          <Container maxWidth="sm">
+              <Box textAlign={"center"} mt={5}>
           <Switch>
               <Route path="/" exact >
+                  <Typography variant="h2" fontWeight="bold">
+                      Quiz App
+                  </Typography>
                   <Settings />
               </Route>
               <Route path="/questions" >
@@ -17,6 +23,8 @@ function App() {
                   <FinalScreen />
               </Route>
             </Switch>
+              </Box>
+          </Container>
       </Router>
   );
 }
