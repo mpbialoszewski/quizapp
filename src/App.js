@@ -11,7 +11,7 @@ function App() {
               <Box textAlign={"center"} mt={5}>
           <Switch>
               <Route path="/" exact >
-                  <Typography variant="h2" fontWeight="bold">
+                  <Typography variant={"h2"} fontWeight="bold">
                       Quiz App
                   </Typography>
                   <Settings />
