@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { handleScoreChange } from "../redux/actions";
+import {decode} from 'html-entities';
 
 const getRandomInt = (max) =>{
     return Math.floor(Math.random() * Math.floor(max))
@@ -78,10 +79,10 @@ const Questions = () => {
     return (
         (<Box>
             <Typography variant='h2'>Question {questionIndex +1}</Typography>
-            <Typography mt={5}>{response.results[questionIndex].question} </Typography>
+            <Typography mt={5}>{decode(response.results[questionIndex].question)} </Typography>
             {options.map((data,id)=>(
                 <Box onClick={handleClickAnswer} mt={2} key={id}>
-                    <Button variant="contained">{data}</Button>
+                    <Button variant="contained">{decode(data)}</Button>
                 </Box>
             ))}
                 <Box mt={2}>
