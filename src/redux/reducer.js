@@ -9,5 +9,5 @@ const initialState = {
 const action =()=>{}
 
 const reducer = (state = initialState, action) =>{
-
+    return state;
 }
