@@ -24,7 +24,6 @@ const Questions = () => {
     } = useSelector((state) => state);
     const history = useHistory();
     const dispatch = useDispatch();
-    console.log(question_category,question_difficulty , question_type, amount_of_question);
 
 
     let apiUrl = `/api.php?amount=${amount_of_question}`
@@ -62,7 +61,6 @@ const Questions = () => {
         )
 
     }
-    console.log(response)
 
     const handleClickAnswer =(e)=>{
         const question = response.results[questionIndex]
