@@ -5,6 +5,9 @@ import useAxios from '../hooks/useAxios';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { handleScoreChange } from "../redux/actions";
 
 const getRandomInt = (max) =>{
     return Math.floor(Math.random() * Math.floor(max))
@@ -18,6 +21,8 @@ const Questions = () => {
         amount_of_question,
         score,
     } = useSelector((state) => state);
+    const history = useHistory();
+    const dispatch = useDispatch();
     console.log(question_category,question_difficulty , question_type, amount_of_question);
 
 
@@ -37,7 +42,7 @@ const Questions = () => {
 
     useEffect(()=>{
         if(response?.results.length){
-            const question = response.results[questionIndex]
+            const question = response.results[questionIndex];
             let answers = [...question.incorrect_answers]
             answers.splice(
                 getRandomInt(question.incorrect_answers.length),
@@ -58,9 +63,16 @@ const Questions = () => {
     }
     console.log(response)
 
-    const handleClickAnswer =()=>{
-        if(questionIndex + 1 < response.result.length){
+    const handleClickAnswer =(e)=>{
+        const question = response.results[questionIndex]
+        if(e.target.textContent === question.correct_answer){
+            dispatch(handleScoreChange(score+1))
+        }
+
+        if(questionIndex + 1 < response.results.length){
             setQuestionIndex(questionIndex+1);
+        }else {
+            history.push('/score')
         }
     }
     return (
