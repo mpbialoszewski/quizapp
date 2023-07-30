@@ -77,7 +77,9 @@ const Questions = () => {
     return (
         (<Box>
             <Typography variant='h2'>Question {questionIndex +1}</Typography>
-            <Typography mt={5}>{decode(response.results[questionIndex].question)} </Typography>
+            <Typography mt={5}>
+                {decode(response.results[questionIndex].question)}
+            </Typography>
             {options.map((data,id)=>(
                 <Box onClick={handleClickAnswer} mt={2} key={id}>
                     <Button variant="contained">{decode(data)}</Button>
