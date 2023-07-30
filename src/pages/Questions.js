@@ -23,6 +23,8 @@ const Questions = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const [error, setError] = useState(false);
+
   let apiUrl = `/api.php?amount=${amount_of_question}`;
   if (question_category) {
     apiUrl = apiUrl.concat(`&category=${question_category}`);
@@ -59,11 +61,21 @@ const Questions = () => {
       </Box>
     );
   }
+
+  if (error) {
+    return (
+      <Box>
+        <Typography variant="h4">Error loading questions</Typography>
+        <Button onClick={() => history.push("/")}>Return to Main Screen</Button>
+      </Box>
+    );
+  }
   
   if (!response.results || response.results.length === 0) {
     return (
       <Box>
-        <Typography variant="h4">No questions found</Typography>
+        <Typography variant="h4">Error! No questions found in that category</Typography>
+        <Button onClick={() => history.push("/")} variant="contained">Return to Main Screen</Button>
       </Box>
     );
   }
