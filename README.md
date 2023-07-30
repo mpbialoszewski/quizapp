@@ -7,7 +7,7 @@ Redux
 Axios 
 Material UI
 
-Liver preview: TBA 
+Liver preview: https://master--cheerful-bunny-5d4e77.netlify.app/
 
 
 ### `npm start`
